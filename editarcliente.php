@@ -9,7 +9,11 @@ if (!isset($_GET['action']) ||
     $_GET['cliente_id'] < 1
 
 ) {
-    header("location:" . base_url('clientes.php'));
+   // echo 'Parametros invalidos!';
+   // sleep(30);
+    //header("location:" . base_url('clientes.php'));
+    echo "<script>alert('Parametros inválidos.');history.go(-1) </script>";
+    exit();
 }
 
 buscarCliente();
