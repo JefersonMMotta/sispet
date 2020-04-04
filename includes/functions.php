@@ -102,3 +102,22 @@ function paginar($pagina, $qtd_por_pagina, $total_registros = 1)
     $data['proximo'] = ($pagina < $data['links']) ? $pagina + 1 : $data['links'];
 }
 
+function showMessage($tipo, $msg ){
+   $class = ($tipo == 'success') ? 'alert alert-success ' : 'alert alert-danger' ;
+   $msg .=   "<div class='{$class}'>";
+   $msg .=  "<strong>Sucesso!</strong>";
+   $msg .= $msg;
+   $msg .="</div>";  
+}
+
+function conveterData($data)
+{
+    $data = $data;
+    if(strpos($data, '/')){
+        $data = implode("-",array_reverse(explode("/",$data)));
+    }else{
+        $data = implode("/",array_reverse(explode("-",$data)));
+    }
+    return $data;
+}
+
