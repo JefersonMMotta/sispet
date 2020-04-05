@@ -20,7 +20,7 @@ function listarCLientes()
     $total = contarClientes();
     
     
-    paginar($page, 10, $total);
+    paginar($page, 3, $total);
     $conn = conectar();
     $sql = "SELECT * FROM clientes WHERE ativo = 1 ";
     if(isset($_GET['search']) && strlen($_GET['search']) > 2){
@@ -29,9 +29,6 @@ function listarCLientes()
       
     }
     $sql .= "LIMIT {$data['pagination']['inicio']},{$data['pagination']['per_page']}";
-
-    echo $sql;
-   
     $result = mysqli_query($conn, $sql);
     $data['num_clientes'] =   mysqli_num_rows($result);
     $data['clientes']= [];  
@@ -71,7 +68,10 @@ listarCLientes();
     <tbody>
         <?php for($i = 0; $i < count($data['clientes']); $i++): ?>
         <tr>
-            <td><a href="editarcliente.php?action=editar&cliente_id=<?=  $data['clientes'][$i]['id_cliente'] ?>" ><i style='font-size:14px' class='far'>&#xf044;</i></a></td>
+            <td><a href="editarcliente.php?action=editar&cliente_id=<?=  $data['clientes'][$i]['id_cliente'] ?>" >
+                    <i style='font-size:14px' class='far'>&#xf044;</i>
+                </a>
+            </td>
             <td><?= $data['clientes'][$i]['id_cliente'] ?></td>
             <td><a href="<?= base_url('clientepets.php?cliente_id='). $data['clientes'][$i]['id_cliente'] ?>">Pets</a></td>
             <td><?= $data['clientes'][$i]['nome'] ?></td>

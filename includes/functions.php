@@ -22,14 +22,14 @@ function base_url($path = null)
 
 function validar($str, $label, $required = false, $unique = [], $max_len = 45,  $min_len = 0, $exacly_len = null)
 {
-    global $data;
-    $lenth = strlen($str);
+    global $data;  
+    $data['value'][$label] = trim(filter_var($str, FILTER_SANITIZE_STRING));
+     $lenth = strlen($str);
     if ($required) {
         if (empty($str)) {
             $data['validation'][$label] = "O campo {$label} é obrigatório";
             $data['validation']['has_error'] = true;
         }
-
     }
 
     if ($exacly_len) {
@@ -62,9 +62,9 @@ function validar($str, $label, $required = false, $unique = [], $max_len = 45,  
             $data['validation']['has_error'] = true;    
          }
     } 
-
-    $data['value'][$label] = trim(filter_var($str, FILTER_SANITIZE_STRING));
+   
     return $data['value'][$label];
+    
 
 }
 
@@ -99,7 +99,7 @@ function paginar($pagina, $qtd_por_pagina, $total_registros = 1)
     $data['pagination']['per_page'] = $qtd_por_pagina;
     $data['links'] = ceil($total_registros/$qtd_por_pagina) ;
     $data['anterior'] = ($pagina > 1) ? $pagina - 1 : 1;
-    $data['proximo'] = ($pagina < $data['links']) ? $pagina + 1 : $data['links'];
+    $data['proximo'] = ($pagina <= $data['links']) ? $pagina + 1 : $data['links'];
 }
 
 function showMessage($tipo, $msg ){

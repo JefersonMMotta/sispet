@@ -10,10 +10,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $email = validar($_POST['email'], 'email', true, array('clientes' => 'email'));
     if (!$data['validation']['has_error']) {
         $conn = conectar();
-        $sql = "INSERT INTO clientes(nome, telefone, email) VALUES(
+        $sql = "INSERT INTO clientes(nome, telefone, email, ativo) VALUES(
            '{$data['value']['nome']}',
            '{$data['value']['telefone']}',
-           '{$data['value']['email']}'
+           '{$data['value']['email']}',
+           1
         )";
         if (mysqli_query($conn, $sql) === true) {
             $data['success'] = "Cliente cadastrado com sucesso";
