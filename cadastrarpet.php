@@ -41,7 +41,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     $raca = validar($_POST['raca'],'Raça',true);
     $especie = validar($_POST['especie'],'Espécie',true);
     $cor = validar($_POST['cor'],'Cor',true);
-    $data_nasimento = conveterData($data_nasimento);
+    $data_nasimento = converterData($data_nasimento);
     if (!$data['validation']['has_error'] && $data['id_cliente'] == $id_cliente) {
         $sql = "INSERT INTO tb_pets (nome, data_nascimento, raca, especie, cor, cod_cliente,ativo)";
         $sql .= "VALUES('$nome', '$data_nasimento', '$raca', '$especie', '$cor', $id_cliente,  1)";
@@ -53,8 +53,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         }else{
             echo mysqli_error($conn);
             $data['fail'] = "Ocorreu um erro ao cadastrar o PET";
-        }
-        
+        }      
     
     }
 

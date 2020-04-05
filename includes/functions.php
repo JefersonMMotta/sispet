@@ -110,7 +110,7 @@ function showMessage($tipo, $msg ){
    $msg .="</div>";  
 }
 
-function conveterData($data)
+function converterData($data)
 {
     $data = $data;
     if(strpos($data, '/')){

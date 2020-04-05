@@ -51,7 +51,7 @@ listarCLientes();
 
 
 <h1>Clientes</h1>
-<form action="">
+<form action="<?= base_url("clientes.php")?>">
     <input type="text" name="search">
     <button type="submit">Pesquisar</button>
 
