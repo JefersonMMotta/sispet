@@ -33,7 +33,7 @@ function listarVacinas()
 {
     global $data;
     $data['vacinas'] = [];
-    $sql = "SELECT * FROM tb_vacinas WHERE cod_pet = '{$data['id_pet']}'";
+    $sql = "SELECT * FROM tb_vacinas WHERE cod_pet = '{$data['id_pet']}' AND ativo=1";
     $conn = conectar();
     $result = mysqli_query($conn, $sql);   
     while ($row = mysqli_fetch_assoc($result)) {
@@ -46,22 +46,35 @@ listarVacinas();
 ?>
 <h1>Vacinas</h1>
 <a class="btn btn-secondary btn-sm float-right mb-1" href="<?= base_url('cadastrarvacina.php?id_pet='.$data['pet'][0]['id_pet'] )?>"> Nova</a>
+<h3>Pet: <?= $data['pet'][0]['nome'];?></h3>
 <p>Cliente: <?= $data['pet'][0]['cliente'];?></p>
-<p>Pet: <?= $data['pet'][0]['nome'];?></p>
+
 <table class="table table-bordered table-sm">
     <thead>
+        <th></th>
         <th>Nome</th>
         <th>Dose</th>
         <th>Data</th>
         <th>Próxima</th>
+        <th></th>
     </thead>
     <tbody>
         <?php for($i=0; $i < count($data['vacinas']) ; $i++) :?>
         <tr>
+            <td>
+                <a href="<?=base_url('editarvacina.php?action=editar&id_vacina=').$data['vacinas'][$i]['id_vacina'] ?>">
+                     <i style='font-size:14px' class='far'>&#xf044;</i>
+                 </a>
+            </td>
             <td><?= $data['vacinas'][$i]['nome']?></td>
             <td><?= $data['vacinas'][$i]['dose']?></td>
             <td><?= converterData($data['vacinas'][$i]['data_aplicacao'])?></td>
             <td><?= converterData($data['vacinas'][$i]['data_prox_aplicacao'])?></td>
+            <td>
+                <a href="<?=base_url('excluirvacina.php?action=excluir&id_vacina=').$data['vacinas'][$i]['id_vacina'].'&id_pet='.$data['id_pet'] ?>">
+                    <i style='font-size:14px; color:red' class='fas'>&#xf12d;</i>
+                </a>
+            </td>
         </tr>
         <?php endfor; ?>
     </tbody>

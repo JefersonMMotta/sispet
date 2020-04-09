@@ -25,6 +25,7 @@ function validar($str, $label, $required = false, $unique = [], $max_len = 45,  
     global $data;  
     $data['value'][$label] = trim(filter_var($str, FILTER_SANITIZE_STRING));
      $lenth = strlen($str);
+   
     if ($required) {
         if (empty($str)) {
             $data['validation'][$label] = "O campo {$label} é obrigatório";

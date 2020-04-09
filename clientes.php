@@ -57,9 +57,9 @@ listarCLientes();
 <table class="table table-bordered table-sm">
     <thead>
         <th></th>
-      
-        <th>Código</th>
-        <th></th>
+        <th>Código</th> 
+        <th>Pets</th>
+            
         <th>Nome</th>
         <th>Telefone</th>
         <th>E-mail</th>
@@ -89,7 +89,7 @@ listarCLientes();
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="6">
+            <td colspan="7">
                
                 <a href="clientes.php?page=<?= $data['anterior']?>">Anterior</a>
                 <a href="#">Atual</a>

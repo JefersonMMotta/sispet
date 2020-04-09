@@ -28,7 +28,10 @@
       <a class="nav-link" href="<?=base_url('pets.php')?>">Pets</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+       <a class="nav-link" href="<?=base_url('produtos.php')?>">Produtos</a>
+       <li class="nav-item">
+       <a class="nav-link" href="<?=base_url('fornecedores.php')?>">Fornecedores</a>
+      </li>
       </li>
     </ul>
   </div>

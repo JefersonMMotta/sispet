@@ -32,23 +32,32 @@ if($_SERVER['REQUEST_METHOD']  == "POST"){
         } else {
             echo mysqli_error($conn);
             $data['fail'] = "Ocorreu um erro ao cadastrar a vacina";
-        }  
-
+        } 
+  
     }
-
-
-   
-
-     
-
 } 
+function buscarPet()
+{
+    global $data;
+    $data['pet'] = [];
+    $sql = "SELECT *,(SELECT nome FROM clientes WHERE cod_cliente = id_cliente) as cliente FROM tb_pets WHERE id_pet = '{$data['id_pet']}'";
+    $conn = conectar();
+    $result = mysqli_query($conn, $sql);
+    if (mysqli_num_rows($result) != 1) {
+        echo "<script>alert('Parametros inválidos.');history.go(-1) </script>";
+        exit();
+    }
+    while ($row = mysqli_fetch_assoc($result)) {
+        array_push($data['pet'], $row);
+    }
+}
 
-
-
-
+buscarPet();
 
 ?>
+<a href="<?= base_url('vacinaspet.php?id_pet=').$data['id_pet']?>" class="btn btn-secondary float-right md-1" >Voltar</a>
 <h1>Aplicar vacina</h1>
+<p>Pet: <?= $data['pet'][0]['nome']?></p>
 <?php if (isset($data['success'])): ?>
         <div class="alert alert-success">
              <strong>Sucesso!</strong> <?=$data['success']?>.
@@ -76,6 +85,7 @@ if($_SERVER['REQUEST_METHOD']  == "POST"){
                     <option value="Raiva canina">
                     <option value="Leishmaniose">
                 </datalist>
+                <span style="color:red"><?=(isset($data['validation']['Nome'])) ? $data['validation']['Nome'] : ''?></span>
             </div>
         </div>
 
@@ -83,6 +93,7 @@ if($_SERVER['REQUEST_METHOD']  == "POST"){
             <div class="form-group">
                 <label for="dose">Dose</label>
                 <input type="text" class="form-control" name="dose" id="dose" value="<?= (isset($data['value']['Dose'])) ? $data['value']['Dose'] :''; ?>">
+                <span style="color:red"><?=(isset($data['validation']['Dose'])) ? $data['validation']['Dose'] : ''?></span>
             </div>
         </div>
 
@@ -90,12 +101,14 @@ if($_SERVER['REQUEST_METHOD']  == "POST"){
             <div class="form-group">
                 <label for="data">Data</label>
                 <input type="text" class="form-control" name="dataAplicacao" id="data" value="<?= (isset($data['value']['Data'])) ? $data['value']['Data'] :''; ?>" >
+                <span style="color:red"><?=(isset($data['validation']['Data'])) ? $data['validation']['Data'] : ''?></span>
             </div>
         </div>
         <div class="col-md-2">
             <div class="form-group">
                 <label for="proxima-data">Próxima Data</label>
                 <input type="text" class="form-control" name="proximaAplicacao" id="proxima-data" value="<?= (isset($data['value']['Próxima Data'])) ? $data['value']['Próxima Data'] :''; ?>" >
+                <span style="color:red"><?=(isset($data['validation']['Próxima Data'])) ? $data['validation']['Próxima Data'] : ''?></span>
             </div>
         </div>
     </div>
@@ -157,6 +170,6 @@ if($_SERVER['REQUEST_METHOD']  == "POST"){
     </tbody>
 
 </table>
-<?php print_r($data);?>
+<?php require_once "includes/footer.php";?>
 
 
