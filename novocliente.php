@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     </div>
     <div class="form-group">
         <label for="telefone">Telefone</label>
-         <input type="text" class="form-control" name="telefone" value="<?=(isset($data['value']['telefone'])) ? $data['value']['telefone'] : ''?>" >
+         <input type="text" class="form-control sp_celphones" name="telefone" value="<?=(isset($data['value']['telefone'])) ? $data['value']['telefone'] : ''?>" >
          <span style="color:red"><?=(isset($data['validation']['telefone'])) ? $data['validation']['telefone'] : ''?></span>
     </div>
     <div class="form-group">

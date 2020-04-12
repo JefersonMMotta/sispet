@@ -149,7 +149,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             <strong>Falha!</strong> <?=$data['fail']?>.
         </div>
 <?php endif;?>
-<form action="<?= base_url('cadastrarProduto.php')?>" method="post">
+<form action="<?= base_url('cadastrarProduto.php')?>" method="post" autocomplete="off">
 <div class="row">
     <div class="form-group col-md-6">
         <label for="nome">Nome</label>
@@ -159,13 +159,13 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
     <div class="form-group col-md-3" >
         <label for="preco_custo">Preço Custo</label>
-        <input type="text" class="form-control" name="preco_custo" id="preco_custo" value="<?= (isset($data['value']['Preço Custo'])) ? $data['value']['Preço Custo']: '' ;?>" >
+        <input type="text" class="form-control money" name="preco_custo" id="preco_custo" value="<?= (isset($data['value']['Preço Custo'])) ? $data['value']['Preço Custo']: '' ;?>" >
         <span style="color:red"><?=(isset($data['validation']['Preço Custo'])) ? $data['validation']['Preço Custo'] : ''?></span>
     </div>
 
     <div class="form-group col-md-3">
         <label for="preco_venda">Preço Venda</label>
-        <input type="text" class="form-control" name="preco_venda" id="preco_venda" value="<?= (isset($data['value']['Preço Venda'])) ? $data['value']['Preço Venda']: '' ;?>">
+        <input type="text" class="form-control money" name="preco_venda" id="preco_venda" value="<?= (isset($data['value']['Preço Venda'])) ? $data['value']['Preço Venda']: '' ;?>">
         <span style="color:red"><?=(isset($data['validation']['Preço Venda'])) ? $data['validation']['Preço Venda'] : ''?></span>
     </div>
 </div>
@@ -198,6 +198,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         <input autocomplete="off" list="lista-unidades" type="text" class="form-control" name="unidade" id="unidade" value="<?= (isset($data['value']['Unidade'])) ? $data['value']['Unidade']: '' ;?>">
         <datalist id="lista-unidades">        
          <option value="Unidade">
+         <option value="Saco">
+         <option value="Pacote">
          <option value="Peça">
          <option value="Kilo">
          <option value="GRAMA">

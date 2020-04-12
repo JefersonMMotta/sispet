@@ -30,7 +30,10 @@
       <li class="nav-item">
        <a class="nav-link" href="<?=base_url('produtos.php')?>">Produtos</a>
        <li class="nav-item">
-       <a class="nav-link" href="<?=base_url('fornecedores.php')?>">Fornecedores</a>
+          <a class="nav-link" href="<?=base_url('fornecedores.php')?>">Fornecedores</a>
+          <li class="nav-item">
+            <a class="nav-link" href="<?=base_url('pedidos.php')?>">Pedidos</a>
+        </li>
       </li>
       </li>
     </ul>

@@ -199,13 +199,13 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
     <div class="form-group col-md-3" >
         <label for="preco_custo">Preço Custo</label>
-        <input type="text" class="form-control" name="preco_custo" id="preco_custo" value="<?= (isset($data['value']['Preço Custo'])) ? $data['value']['Preço Custo']: $data['produto'][0]['preco_custo']  ;?>" >
+        <input type="text" class="form-control money" name="preco_custo" id="preco_custo" value="<?= (isset($data['value']['Preço Custo'])) ? $data['value']['Preço Custo']: $data['produto'][0]['preco_custo']  ;?>" >
         <span style="color:red"><?=(isset($data['validation']['Preço Custo'])) ? $data['validation']['Preço Custo'] : ''?></span>
     </div>
 
     <div class="form-group col-md-3">
         <label for="preco_venda">Preço Venda</label>
-        <input type="text" class="form-control" name="preco_venda" id="preco_venda" value="<?= (isset($data['value']['Preço Venda'])) ? $data['value']['Preço Venda']: $data['produto'][0]['preco_venda']  ;?>">
+        <input type="text" class="form-control money" name="preco_venda" id="preco_venda" value="<?= (isset($data['value']['Preço Venda'])) ? $data['value']['Preço Venda']: $data['produto'][0]['preco_venda']  ;?>">
         <span style="color:red"><?=(isset($data['validation']['Preço Venda'])) ? $data['validation']['Preço Venda'] : ''?></span>
     </div>
 </div>

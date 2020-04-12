@@ -121,4 +121,12 @@ function converterData($data)
     }
     return $data;
 }
+function formatarMoeda($numero)
+{
+    return number_format($numero, 2, ',', '.');
+}
 
+function formatarDecimal($numero)
+{
+   return str_replace(',', '.', str_replace('.', '', $numero));
+}
