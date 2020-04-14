@@ -1,5 +1,6 @@
 <?php
 session_start();
+date_default_timezone_set("America/Sao_Paulo");
 define("BASE_URI", '/');
 define("BASE_URL", "http://localhost/petshop/");
 define("SERVERNAME", 'localhost');
