@@ -52,7 +52,7 @@ listarPetsCliente();
 <h1>Pets</h1>
 <p>Cliente: <?=$data['cliente'][0]['nome'];?></p>
 <a class="btn btn-secondary btn-sm float-right mb-1" href="<?= base_url('cadastrarpet.php?cliente_id='.$data['id_cliente'])?>">Novo Pet</a>
-<table class="table table-condesed table-borderd">
+<table class="table table-sm table-bordered">
     <thead>
         <th></th>
         <th>Nome</th>
@@ -70,7 +70,7 @@ listarPetsCliente();
                 <td><?=$data['pets'][$i]['raca'];?></td>
                 <td><?=$data['pets'][$i]['especie'];?></td>
                 <td><?=$data['pets'][$i]['cor'];?></td>
-                <td><?=$data['pets'][$i]['data_nascimento'];?></td>
+                <td><?= converterData($data['pets'][$i]['data_nascimento']);?></td>
                 <td></td>
             </tr>
         <?php endfor;

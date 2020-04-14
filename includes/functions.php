@@ -96,11 +96,19 @@ function paginar($pagina, $qtd_por_pagina, $total_registros = 1)
 {
     global $data;
     $data['pagination'] = [];
-    $data['pagination']['inicio'] = $pagina - 1;
+    $data['pagination']['inicio'] = ($pagina - 1) * $qtd_por_pagina;
     $data['pagination']['per_page'] = $qtd_por_pagina;
     $data['links'] = ceil($total_registros/$qtd_por_pagina) ;
+    $data['atual'] = $pagina;
     $data['anterior'] = ($pagina > 1) ? $pagina - 1 : 1;
-    $data['proximo'] = ($pagina <= $data['links']) ? $pagina + 1 : $data['links'];
+    $pagina = ($pagina < 1) ? 1 : $pagina;
+    if($pagina >= 1)
+    {
+        $data['proximo'] = ++$pagina;
+    }
+    if($pagina > $data['links']){
+        $data['proximo'] = $data['links'];
+    }
 }
 
 function showMessage($tipo, $msg ){

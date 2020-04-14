@@ -17,9 +17,9 @@ function listarFornecedores()
 {
     global $data;
     $page = (isset($_GET['page'])) ? $_GET['page'] : 1 ;
-    $total = contarFornecedores();    
-    
-    paginar($page, 3, $total);
+    $total = contarFornecedores();   
+    $data['total_fornecedores'] = $total;    
+    paginar($page, 10, $total);
     $conn = conectar();
     $sql = "SELECT * FROM tb_fornecedores WHERE ativo = 1 ";
 
@@ -79,7 +79,7 @@ listarFornecedores();
                 <a onclick="if(!confirm('Deseja realmente excluir esse fornecedor?')) return false;" 
                 
                 href="excluirFornecedor.php?action=excluir&id_fornecedor=<?=  $data['fornecedores'][$i]['id_fornecedor'] ?>">
-                 <i style='font-size:14px; color:red' class='fas'>&#xf12d;</i>
+                <i class='fas'>&#xf2ed;</i>
                 </a>
             </td>
         </tr>
@@ -87,12 +87,26 @@ listarFornecedores();
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="7">
-               
-                <a href="fornecedores.php?page=<?= $data['anterior']?>">Anterior</a>
-                <a href="#">Atual</a>
-                <a href="fornecedores.php?page=<?= $data['proximo']?>">Proximo</a>                 
+            <td colspan="8">
+            <?php 
+                $anterior = "";
+                $proximo = "";
+                $url = "fornecedores.php?page=";
+                $anterior .= (isset($data['search'])) ? $url.$data['anterior'].'&search='.$data['search'] :$url.$data['anterior'];
+                $proximo .= (isset($data['search'])) ? $url.$data['proximo'].'&search='.$data['search'] :$url.$data['proximo']; 
+            ?>
 
+
+              <span>Total de: <?= $data['total_fornecedores']?> Regsitros</span>  
+            <ul  class="pagination justify-content-end" style="margin:20px 0">
+            <?php if ($data['atual'] != $data['anterior']): ?>
+                <li class="page-item"><a  class="page-link" href="<?= $anterior?>"><?= $data['anterior']?></a></li>
+             <?php endif;?>
+                <li class="page-item active">  <a  class="page-link" href="#"><?=$data['atual']?></a></li>
+                <?php if ($data['atual'] != $data['proximo']): ?>
+                <li class="page-item">  <a class="page-link" href="<?= $proximo?>"><?=$data['proximo']?></a></li>
+                <?php endif;?>
+            </ul>
             </td>
         </tr>
     </tfoot>

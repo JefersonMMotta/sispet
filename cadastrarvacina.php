@@ -100,14 +100,14 @@ buscarPet();
         <div class="col-md-2">
             <div class="form-group">
                 <label for="data">Data</label>
-                <input type="text" class="form-control" name="dataAplicacao" id="data" value="<?= (isset($data['value']['Data'])) ? $data['value']['Data'] :''; ?>" >
+                <input type="text" class="form-control date" name="dataAplicacao" id="data" value="<?= (isset($data['value']['Data'])) ? $data['value']['Data'] :''; ?>" >
                 <span style="color:red"><?=(isset($data['validation']['Data'])) ? $data['validation']['Data'] : ''?></span>
             </div>
         </div>
         <div class="col-md-2">
             <div class="form-group">
                 <label for="proxima-data">Próxima Data</label>
-                <input type="text" class="form-control" name="proximaAplicacao" id="proxima-data" value="<?= (isset($data['value']['Próxima Data'])) ? $data['value']['Próxima Data'] :''; ?>" >
+                <input type="text" class="form-control date" name="proximaAplicacao" id="proxima-data" value="<?= (isset($data['value']['Próxima Data'])) ? $data['value']['Próxima Data'] :''; ?>" >
                 <span style="color:red"><?=(isset($data['validation']['Próxima Data'])) ? $data['validation']['Próxima Data'] : ''?></span>
             </div>
         </div>

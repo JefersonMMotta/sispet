@@ -100,7 +100,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         <div class="col-md-3">
         <div class="form-group">
             <label for="data_nascimento">Data de Nascimento</label>
-                <input type="text"   class="form-control" name='data_nascimento' id="data_nascimento" value="<?=(isset($data['value']['Data de Nascimento'])) ?$data['value']['Data de Nascimento'] : converterData($data['pet'][0]['data_nascimento'])?>">
+                <input type="text"   class="form-control date" name='data_nascimento' id="data_nascimento" value="<?=(isset($data['value']['Data de Nascimento'])) ?$data['value']['Data de Nascimento'] : converterData($data['pet'][0]['data_nascimento'])?>">
               <span style="color:red"><?=(isset($data['validation']['Data de Nascimento'])) ? $data['validation']['Data de Nascimento'] : ''?></span>
         </div>
         </div>
@@ -138,4 +138,4 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 </form>
 
-<?php require_once "includes/header.php";?>
+<?php require_once "includes/footer.php";?>

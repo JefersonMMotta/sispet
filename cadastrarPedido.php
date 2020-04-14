@@ -92,6 +92,7 @@ if (isset($_GET['action']) && $_GET['action'] == "excluir") {
         unset($_SESSION['cart']['item'][$id_produto]);
     }
     listarCarrinho();
+    echo "<script>history.go(-1) </script>";
 }
 
 if (isset($_GET['action']) && $_GET['action'] == "atualizar") {
@@ -99,6 +100,7 @@ if (isset($_GET['action']) && $_GET['action'] == "atualizar") {
     $quantidade = $_GET['quantidade'];
     if(filter_var($quantidade, FILTER_VALIDATE_INT) && $quantidade > 0 && isset($_SESSION['cart']['item'][$id_produto] )){
         $_SESSION['cart']['item'][$id_produto] = $quantidade;
+        echo "<script>history.go(-1) </script>";
     }else{
         unset($_SESSION['cart']['item'][$id_produto]);
     }
@@ -120,7 +122,9 @@ if (isset($_GET['action']) && $_GET['action'] == "add") {
 
     (!isset($_SESSION['cart']['item'][$id_produto])) ? $_SESSION['cart']['item'][$id_produto] = 1 : $_SESSION['cart']['item'][$id_produto] += 1;
     $data['show-modal'] = false;
+    echo "<script>history.go(-1) </script>";
     listarCarrinho();
+
 }
 
 if (isset($_GET['action']) && $_GET['action'] == "desconto") {
@@ -319,7 +323,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             <tr>
             <td>
                <a href="<?=base_url("CadastrarPedido.php?action=excluir&id_produto=") . $data['produtos_carrinho'][$i]['id_produto']?>">
-                excluir
+               <i  style="color:red;"class="fas fa-minus"></i>
             </a>
             </td>
                 <td><?=$data['produtos_carrinho'][$i]['id_produto']?></td>

@@ -34,6 +34,9 @@
           <li class="nav-item">
             <a class="nav-link" href="<?=base_url('pedidos.php')?>">Pedidos</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="<?=base_url('relatorios.php')?>">Relatórios</a>
+        </li>
       </li>
       </li>
     </ul>
